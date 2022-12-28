@@ -23,7 +23,15 @@ const JobsContainer = () => {
         //       },
         // })
         axios.get(
-            `https://jobscrappernocountry-main-production.up.railway.app/api/v1/jobs`
+            `https://jobscrappernocountry-main-production.up.railway.app/api/v1/jobs`,
+            {
+                mode: 'no-cors',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                },
+
+            }
         )
             .then((res) => {
                 if (res.status !== 200) return;
@@ -56,10 +64,6 @@ const JobsContainer = () => {
                     lg: 'row',
                     xl: 'row',
                 }}
-            /* rowSpacing={2}
-            columnSpacing={3}
-            justifyContent="center" */
-            // key={job.id}
             >
                 {state.jobs?.map((job) => (
                     <Grid item xs={1}>
@@ -67,12 +71,6 @@ const JobsContainer = () => {
                             <JobCard jobs={job} />
                         </Link>
                     </Grid>
-                    // {/* <Grid item xs={1}>
-                    //     <JobCard jobs={job} />
-                    // </Grid>
-                    // <Grid item xs={1}>
-                    //     <JobCard jobs={job} />
-                    // </Grid> */}
                 ))}
             </Grid>
         </Container>
